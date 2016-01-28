@@ -11,11 +11,9 @@ MAX_ROOMS = 3
 
 
 def create_room(room, dungeon_map):
-
     for x in xrange(room.x1 + 1, room.x2):
         for y in xrange(room.y1 + 1, room.y2):
             dungeon_map[x][y] = 'X'
-
     return dungeon_map
 
 def print_dungeon_map(dungeon_map):
@@ -28,7 +26,6 @@ def main():
     dungeon_map = [['_']*MAP_WIDTH]*MAP_HEIGHT
     rooms = []
     num_rooms = 0
-
 
     for r in xrange(MAX_ROOMS):
         width = random.randrange(ROOM_MIN_SIZE, ROOM_MAX_SIZE)
@@ -45,9 +42,13 @@ def main():
 
                 create_room(new_room, dungeon_map)
                 rooms.append(new_room)
+                print getattr(new_room, 'width')
+                print getattr(new_room, 'height')
         else:
             create_room(new_room, dungeon_map)
             rooms.append(new_room)
+            print getattr(new_room, 'width')
+            print getattr(new_room, 'height')
 
     print_dungeon_map(dungeon_map)
 

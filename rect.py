@@ -8,6 +8,8 @@ class Rect:
         self.y1 = ycorner
         self.x2 = xcorner + width
         self.y2 = ycorner + height
+        self.height = height
+        self.width = width
 
     def intersect(self, other):
         #returns true if this rectangle intersects with another one
