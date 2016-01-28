@@ -16,6 +16,18 @@ def create_room(room, dungeon_map):
             dungeon_map[x][y] = 'X'
     return dungeon_map
 
+def create_h_tunnel(x1, x2, y, dungeon_map):
+    #horizontal tunnel. min() and max() are used in case x1>x2
+    for x in xrange(min(x1, x2), max(x1, x2) + 1):
+        dungeon_map[x][y] = 'X'
+    return dungeon_map
+
+def create_v_tunnel(y1, y2, x, dungeon_map):
+    #vertical tunnel
+    for y in xrange(min(y1, y2), max(y1, y2) + 1):
+        dungeon_map[x][y] = 'X'
+    return dungeon_map
+
 def print_dungeon_map(dungeon_map):
     for x in xrange(MAP_WIDTH):
         for y in xrange(MAP_HEIGHT):
@@ -49,6 +61,19 @@ def main():
             rooms.append(new_room)
             print getattr(new_room, 'width')
             print getattr(new_room, 'height')
+
+        (new_x, new_y) = new_room.center()
+        (prev_x, prev_y) = rooms[num_rooms-1].center()
+
+    if random.randrange(0, 1) == 1:
+        #first move horizontally, then vertically
+        dungeon_map = create_h_tunnel(prev_x, new_x, prev_y, dungeon_map)
+        dungeon_map = create_v_tunnel(prev_y, new_y, new_x, dungeon_map)
+    else:
+        #first move vertically, then horizontally
+        dungeon_map = create_v_tunnel(prev_y, new_y, prev_x, dungeon_map)
+        dungeon_map = create_h_tunnel(prev_x, new_x, new_y, dungeon_map)
+
 
     print_dungeon_map(dungeon_map)
 
