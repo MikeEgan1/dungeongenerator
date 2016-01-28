@@ -72,7 +72,7 @@ def make_map():
             #this means there are no intersections, so this room is valid
 
             #"paint" it to the map's tiles
-            dungeon_map = create_room(new_room)
+            dungeon_map = create_room(new_room, dungeon_map)
 
             #center coordinates of new room, will be useful later
             (new_x, new_y) = new_room.center()
