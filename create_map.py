@@ -7,7 +7,7 @@ MAP_HEIGHT = 50
 MAP_WIDTH = 50
 ROOM_MAX_SIZE = 10
 ROOM_MIN_SIZE = 6
-MAX_ROOMS = 2`
+MAX_ROOMS = 2
 
 
 def create_room(room, dungeon_map):
@@ -47,7 +47,7 @@ def main():
         new_room = Rect(xcorner, ycorner, width, height)
         # new_room.print_rect()
 
-        if num_rooms > 1:
+        if num_rooms > 0:
             for other_room in rooms:
                 if new_room.intersect(other_room):
                     break
