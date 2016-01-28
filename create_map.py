@@ -7,7 +7,7 @@ MAP_HEIGHT = 50
 MAP_WIDTH = 50
 ROOM_MAX_SIZE = 10
 ROOM_MIN_SIZE = 6
-MAX_ROOMS = 5`
+MAX_ROOMS = 5
 
 
 def create_room(room, dungeon_map):
