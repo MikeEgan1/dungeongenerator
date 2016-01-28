@@ -13,4 +13,4 @@ class Rect:
         for x in xrange(self.x2 - self.x1):
             for y in xrange(self.y2 - self.y1):
                 sys.stdout.write('X')
-            sys.stdout.write('/n')
+            sys.stdout.write('\n')
