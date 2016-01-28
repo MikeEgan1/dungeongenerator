@@ -46,7 +46,7 @@ def make_map():
     rooms = []
     num_rooms = 0
     player = {'x' : 0, 'y' : 0}
-    dungeon_map = []
+    dungeon_map = [[], []]
 
     for r in xrange(MAX_ROOMS):
         #random width and height
