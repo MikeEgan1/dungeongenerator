@@ -7,7 +7,7 @@ MAP_HEIGHT = 50
 MAP_WIDTH = 50
 ROOM_MAX_SIZE = 10
 ROOM_MIN_SIZE = 6
-MAX_ROOMS = 5
+MAX_ROOMS = 2`
 
 
 def create_room(room, dungeon_map):
@@ -53,7 +53,6 @@ def main():
                     break
 
                 dungeon_map = create_room(new_room, dungeon_map)
-                rooms.append(new_room)
                 (new_x, new_y) = new_room.center()
                 (prev_x, prev_y) = rooms[num_rooms-1].center()
 
@@ -66,6 +65,7 @@ def main():
                     dungeon_map = create_v_tunnel(prev_y, new_y, prev_x, dungeon_map)
                     dungeon_map = create_h_tunnel(prev_x, new_x, new_y, dungeon_map)
 
+                rooms.append(new_room)
                 num_rooms = num_rooms + 1
 
         else:
