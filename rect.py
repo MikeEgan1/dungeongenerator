@@ -1,3 +1,6 @@
+import sys
+
+
 class Rect:
     #a rectangle on the map. used to characterize a room.
     def __init__(self, xcorner, ycorner, width, height):
@@ -7,7 +10,7 @@ class Rect:
         self.y2 = ycorner + height
 
     def print_rect(self):
-        for x in xrange(self.x2):
-            for y in xrange(self.y2):
-                print 'X'
-            print '/n'
+        for x in xrange(self.x2 - self.x1):
+            for y in xrange(self.y2 - self.y1):
+                sys.stdout.write('X')
+            sys.stdout.write('/n')
