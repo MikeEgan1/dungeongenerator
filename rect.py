@@ -10,8 +10,8 @@ class Rect:
         self.y2 = ycorner + height
 
     def print_rect(self):
-        for x in xrange(self.x2 - self.x1):
-            for y in xrange(self.y2 - self.y1):
+        for _ in xrange(self.x2 - self.x1):
+            for _ in xrange(self.y2 - self.y1):
                 sys.stdout.write('X')
             sys.stdout.write('\n')
 

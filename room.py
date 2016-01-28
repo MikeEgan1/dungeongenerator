@@ -86,7 +86,7 @@ def make_map():
                 player.x = new_x
                 player.y = new_y
 
-        else:fr
+        else:
             #all rooms after the first:
             #connect it to the previous room with a tunnel
 
