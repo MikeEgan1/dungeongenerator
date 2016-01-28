@@ -23,7 +23,7 @@ def print_dungeon_map(dungeon_map):
         sys.stdout.write('\n')
 
 def main():
-    dungeon_map = [['_' for x in range(MAP_HEIGHT)] for x in range(MAP_WIDTH)]
+    dungeon_map = [['_' for x in xrange(MAP_HEIGHT)] for x in xrange(MAP_WIDTH)]
     rooms = []
     num_rooms = 0
 
