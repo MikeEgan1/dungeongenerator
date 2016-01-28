@@ -1,8 +1,12 @@
 from rect import Rect
 from tile import Tile
+import libtcodpy as libtcod
 
 MAP_HEIGHT = 200
 MAP_WIDTH = 200
+ROOM_MAX_SIZE = 10
+ROOM_MIN_SIZE = 6
+MAX_ROOMS = 30
 
 def create_room(room):
     global map
@@ -25,17 +29,25 @@ def create_v_tunnel(y1, y2, x):
         map[x][y].blocked = False
         map[x][y].block_sight = False
 
+def center(self):
+    center_x = (self.x1 + self.x2) / 2
+    center_y = (self.y1 + self.y2) / 2
+    return (center_x, center_y)
+
+def intersect(self, other):
+    #returns true if this rectangle intersects with another one
+    return (self.x1 <= other.x2 and self.x2 >= other.x1 and
+            self.y1 <= other.y2 and self.y2 >= other.y1)
+
 def make_map():
-    global map
+    rooms = []
+    num_rooms = 0
 
-    #fill map with "blocked" tiles
-    map = [[ Tile(True)
-             for y in xrange(MAP_HEIGHT) ]
-           for x in xrange(MAP_WIDTH) ]
+    for r in xrange(MAX_ROOMS):
+        #random width and height
+        w = libtcod.random_get_int(0, ROOM_MIN_SIZE, ROOM_MAX_SIZE)
+        h = libtcod.random_get_int(0, ROOM_MIN_SIZE, ROOM_MAX_SIZE)
+        #random position without going out of the boundaries of the map
+        x = libtcod.random_get_int(0, 0, MAP_WIDTH - w - 1)
+        y = libtcod.random_get_int(0, 0, MAP_HEIGHT - h - 1)
 
-    #create two rooms
-    room1 = Rect(20, 15, 10, 15)
-    room2 = Rect(50, 15, 10, 15)
-    create_h_tunnel(25, 55, 23)
-    create_room(room1)
-    create_room(room2)
