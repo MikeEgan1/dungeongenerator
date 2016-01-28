@@ -52,7 +52,7 @@ def main():
                 if new_room.intersect(other_room):
                     break
 
-                create_room(new_room, dungeon_map)
+                dungeon_map = create_room(new_room, dungeon_map)
                 rooms.append(new_room)
                 (new_x, new_y) = new_room.center()
                 (prev_x, prev_y) = rooms[num_rooms-1].center()
@@ -69,7 +69,7 @@ def main():
                 num_rooms = num_rooms + 1
 
         else:
-            create_room(new_room, dungeon_map)
+            dungeon_map = create_room(new_room, dungeon_map)
             rooms.append(new_room)
             num_rooms = num_rooms + 1
 
