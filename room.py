@@ -9,25 +9,25 @@ ROOM_MIN_SIZE = 6
 MAX_ROOMS = 30
 
 def create_room(room):
-    global map
+    global dung_map
     #go through the tiles in the rectangle and make them passable
     for x in xrange(room.x1, room.x2 + 1):
         for y in xrange(room.y1, room.y2 + 1):
-            map[x][y].blocked = False
-            map[x][y].block_sight = False
+            dung_map[x][y].blocked = False
+            dung_map[x][y].block_sight = False
 
 def create_h_tunnel(x1, x2, y):
-    global map
+    global dung_map
     for x in xrange(min(x1, x2), max(x1, x2) + 1):
-        map[x][y].blocked = False
-        map[x][y].block_sight = False
+        dung_map[x][y].blocked = False
+        dung_map[x][y].block_sight = False
 
 def create_v_tunnel(y1, y2, x):
-    global map
+    global dung_map
     #vertical tunnel
     for y in xrange(min(y1, y2), max(y1, y2) + 1):
-        map[x][y].blocked = False
-        map[x][y].block_sight = False
+        dung_map[x][y].blocked = False
+        dung_map[x][y].block_sight = False
 
 def center(self):
     center_x = (self.x1 + self.x2) / 2
