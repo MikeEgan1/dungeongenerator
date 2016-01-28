@@ -43,7 +43,6 @@ def intersect(self, other):
             self.y1 <= other.y2 and self.y2 >= other.y1)
 
 def make_map():
-    rooms = []
     num_rooms = 0
     player = {'x' : 0, 'y' : 0}
     dungeon_map = [[], []]
@@ -87,7 +86,7 @@ def make_map():
                 player.x = new_x
                 player.y = new_y
 
-        else:
+        else:fr
             #all rooms after the first:
             #connect it to the previous room with a tunnel
 
