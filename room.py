@@ -8,26 +8,29 @@ ROOM_MAX_SIZE = 10
 ROOM_MIN_SIZE = 6
 MAX_ROOMS = 30
 
-def create_room(room):
-    global dung_map
+def create_room(room, dungeon_map):
     #go through the tiles in the rectangle and make them passable
     for x in xrange(room.x1, room.x2 + 1):
         for y in xrange(room.y1, room.y2 + 1):
-            dung_map[x][y].blocked = False
-            dung_map[x][y].block_sight = False
+            dungeon_map[x][y].blocked = False
+            dungeon_map[x][y].block_sight = False
 
-def create_h_tunnel(x1, x2, y):
-    global dung_map
+    return dungeon_map
+
+def create_h_tunnel(x1, x2, y, dungeon_map):
     for x in xrange(min(x1, x2), max(x1, x2) + 1):
-        dung_map[x][y].blocked = False
-        dung_map[x][y].block_sight = False
+        dungeon_map[x][y].blocked = False
+        dungeon_map[x][y].block_sight = False
 
-def create_v_tunnel(y1, y2, x):
-    global dung_map
+    return dungeon_map
+
+def create_v_tunnel(y1, y2, x, dungeon_map):
     #vertical tunnel
     for y in xrange(min(y1, y2), max(y1, y2) + 1):
-        dung_map[x][y].blocked = False
-        dung_map[x][y].block_sight = False
+        dungeon_map[x][y].blocked = False
+        dungeon_map[x][y].block_sight = False
+
+    return dungeon_map
 
 def center(self):
     center_x = (self.x1 + self.x2) / 2
@@ -43,6 +46,7 @@ def make_map():
     rooms = []
     num_rooms = 0
     player = {'x' : 0, 'y' : 0}
+    dungeon_map = []
 
     for r in xrange(MAX_ROOMS):
         #random width and height
@@ -68,7 +72,7 @@ def make_map():
             #this means there are no intersections, so this room is valid
 
             #"paint" it to the map's tiles
-            create_room(new_room)
+            dungeon_map = create_room(new_room)
 
             #center coordinates of new room, will be useful later
             (new_x, new_y) = new_room.center()
@@ -93,12 +97,12 @@ def make_map():
             #draw a coin (random number that is either 0 or 1)
             if libtcod.random_get_int(0, 0, 1) == 1:
                 #first move horizontally, then vertically
-                create_h_tunnel(prev_x, new_x, prev_y)
-                create_v_tunnel(prev_y, new_y, new_x)
+                dungeon_map = create_h_tunnel(prev_x, new_x, prev_y, dungeon_map)
+                dungeon_map = create_v_tunnel(prev_y, new_y, new_x, dungeon_map)
             else:
                 #first move vertically, then horizontally
-                create_v_tunnel(prev_y, new_y, prev_x)
-                create_h_tunnel(prev_x, new_x, new_y)
+                dungeon_map = create_v_tunnel(prev_y, new_y, prev_x, dungeon_map)
+                dungeon_map = create_h_tunnel(prev_x, new_x, new_y, dungeon_map)
 
         #finally, append the new room to the list
         rooms.append(new_room)
